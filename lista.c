@@ -5,17 +5,45 @@
 #include <string.h>
 //***************************************************************************************************
 // CRIAR MATRIZ
-void criarMatri(struct tLista **pLista, char *nome, int y, int x) {
+void criarMatriz(struct tLista **pLista, char *nome, int y, int x) {
   if (*pLista == NULL) {
-    *pLista = (tLista *)malloc(sizeof(tLista));
-    strcpy((*plista)->nome, nome);
-    (*plista)->mat = (float *)malloc(sizeof(float) * y * x);
+    *pLista = (struct tLista *)malloc(sizeof(struct tLista));
+    strcpy((*pLista)->nome, nome);
+    (*pLista)->sizex = x;
+    (*pLista)->sizey = y;
+    (*pLista)->prox = NULL;
+    initMatriz(&(*pLista)->mat, x, y);
+  } else {
+    if (strcmp((*pLista)->nome, nome) == 0)
+      printf("ERRO\n");
+    else
+      criarMatriz(&(*pLista)->prox, nome, y, x);
   }
-  criarMatriz((*pLista)->prox, nome, y, x);
 }
 //***************************************************************************************************
 // DESTRUIR MATRIZ
-void destruirMatriz(struct tLista **pLista, char *nome) {}
+void destruirMatriz(struct tLista **pLista, char *nome) {
+  struct tLista *dobby;
+  if (strcmp((*pLista)->nome, nome) == 0) {
+    dobby = *pLista;
+    *pLista = (*pLista)->prox;
+    eliminaMatriz(&(dobby->mat), dobby->sizex);
+    free(dobby);
+  } else {
+    if ((*pLista)->prox == NULL)
+      puts("ERRO");
+    else {
+      if (strcmp((*pLista)->prox->nome, nome) == 0) {
+        dobby = (*pLista)->prox;
+        (*pLista)->prox = (*pLista)->prox->prox;
+        eliminaMatriz(&(dobby->mat), dobby->sizex);
+        free(dobby);
+      }
+      destruirMatriz(&(*pLista)->prox, nome);
+    }
+  }
+}
+
 //***************************************************************************************************
 // IMPRIMIR MATRIZ
 void imprimirMatriz(struct tLista **pLista, char *nome) {}
