@@ -30,7 +30,7 @@ int main() {
       if (1 > y || 50 < y || 1 > x || 50 < x)
         puts("ERRO");
       else
-        criarMatriz(&pLista, nome1, y, x);
+        y = criarMatriz(&pLista, nome1, y, x);
     }
     if (!(strcmp(cmd, "DM"))) {
       scanf("%s", nome1);
@@ -44,17 +44,17 @@ int main() {
       scanf("%s", nome1);
       scanf("%i %i", &y, &x);
       scanf("%f", &num);
-      //  atribuirElemento(&plista, nome1, y, x, num);
+      atribuirElemento(&plista, nome1, y, x, num);
     }
     if (!(strcmp(cmd, "AL"))) {
       scanf("%s", nome1);
       scanf("%i", &y);
-      // atribuirLinha(&pLista, nome1, y);
+      atribuirLinha(&pLista, nome1, y);
     }
     if (!(strcmp(cmd, "AC"))) {
       scanf("%s", nome1);
       scanf("%i", &x);
-      // atribuirColuna(&pLista, nome1, x);
+      atribuirColuna(&pLista, nome1, x);
     }
     if (!(strcmp(cmd, "TM"))) {
       scanf("%s", nome1);
