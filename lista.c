@@ -12,7 +12,7 @@ void criarMatriz(struct tLista **pLista, char *nome, int y, int x) {
     (*pLista)->sizex = x;
     (*pLista)->sizey = y;
     (*pLista)->prox = NULL;
-    initMatriz(&(*pLista)->mat, x, y);
+    (*pLista)->mat = initMatriz(x, y);
   } else {
     if (strcmp((*pLista)->nome, nome) == 0)
       printf("ERRO\n");
@@ -24,29 +24,53 @@ void criarMatriz(struct tLista **pLista, char *nome, int y, int x) {
 // DESTRUIR MATRIZ
 void destruirMatriz(struct tLista **pLista, char *nome) {
   struct tLista *dobby;
-  if (strcmp((*pLista)->nome, nome) == 0) {
-    dobby = *pLista;
-    *pLista = (*pLista)->prox;
-    eliminaMatriz(&(dobby->mat), dobby->sizex);
-    free(dobby);
-  } else {
-    if ((*pLista)->prox == NULL)
-      puts("ERRO");
-    else {
-      if (strcmp((*pLista)->prox->nome, nome) == 0) {
-        dobby = (*pLista)->prox;
-        (*pLista)->prox = (*pLista)->prox->prox;
-        eliminaMatriz(&(dobby->mat), dobby->sizex);
-        free(dobby);
+  if (*pLista == NULL)
+    puts("ERRO");
+  else {
+    if (strcmp((*pLista)->nome, nome) == 0) {
+      dobby = *pLista;
+      *pLista = (*pLista)->prox;
+      eliminaMatriz((dobby->mat), dobby->sizex);
+      printf("destrido %s\n", nome); //<--------------------------Excluir
+      free(dobby);
+    } else {
+      if ((*pLista)->prox == NULL)
+        puts("ERRO");
+      else {
+        if (strcmp((*pLista)->prox->nome, nome) == 0) {
+          dobby = (*pLista)->prox;
+          (*pLista)->prox = (*pLista)->prox->prox;
+          eliminaMatriz((dobby->mat), dobby->sizex);
+          printf("destrido %s\n", nome); //<--------------------------Excluir
+          free(dobby);
+        } else
+          destruirMatriz(&(*pLista)->prox, nome);
       }
-      destruirMatriz(&(*pLista)->prox, nome);
     }
   }
 }
 
 //***************************************************************************************************
 // IMPRIMIR MATRIZ
-void imprimirMatriz(struct tLista **pLista, char *nome) {}
+void imprimirMatriz(struct tLista **pLista, char *nome) {
+  if (*pLista == NULL)
+    puts("ERRO");
+  else {
+    if (strcmp((*pLista)->nome, nome) == 0) {
+      imprime(*pLista);
+    } else {
+      if ((*pLista)->prox == NULL)
+        puts("ERRO");
+      else {
+        if (strcmp((*pLista)->prox->nome, nome) == 0) {
+          imprime((*pLista)->mat, (*pLista)->x, (*pLista)->y);
+        } else
+          imprimirMatriz(&(*pLista)->prox, nome);
+      }
+    }
+  }
+}
+
 //***************************************************************************************************
 // ATRIBUIR ELEMENTO
 void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,

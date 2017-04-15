@@ -1,0 +1,11 @@
+CM a 50 50
+CM b 50 50
+CM c 50 50
+CM d 50 50
+CM e 50 50
+DM e
+DM a
+DM c
+DM b
+DM d
+FE

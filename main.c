@@ -21,7 +21,7 @@ int main() {
 
   pLista = NULL;
   do {
-    system("clear");
+    //    system("clear");
     scanf("%s", cmd);
 
     if (!(strcmp(cmd, "CM"))) {
@@ -38,7 +38,7 @@ int main() {
     }
     if (!(strcmp(cmd, "IM"))) {
       scanf("%s", nome1);
-      // imprimirMatriz(&plista, nome1);
+      imprimirMatriz(&plista, nome1);
     }
     if (!(strcmp(cmd, "AE"))) {
       scanf("%s", nome1);

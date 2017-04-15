@@ -1,7 +1,7 @@
 //structs lista
 struct tLista {
         char nome[10];
-        float *mat;
+        float **mat;
         int sizex, sizey;
         struct tLista *prox;
 };
@@ -9,7 +9,7 @@ struct tLista {
 //incluindo funcoes
 void criarMatriz        (struct tLista **pLista, char *nome, int y, int x);
 void destruirMatriz     (struct tLista **pLista, char *nome);
-// void imprimirMatriz     (struct tLista *pLista, char *nome);
+void imprimirMatriz     (struct tLista *pLista, char *nome);
 // void atribuirElemento   (struct tLista *pLista, char *nome, int y, int x, float num);
 // void atribuirLinha      (struct tLista *pLista, char *nome, int y);
 // void atribuirColuna     (struct tLista *pLista, char *nome, int x);
