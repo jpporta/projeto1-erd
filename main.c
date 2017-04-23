@@ -71,7 +71,7 @@ int main() {
       scanf("%s", nome1);
       scanf("%s", nome2);
       scanf("%s", nomeR);
-      // dividirMatriz(&pLista, nome1, nome2, nomeR);
+      dividirMatriz(&pLista, nome1, nome2, nomeR);
     }
     if (!(strcmp(cmd, "MM"))) {
       scanf("%s", nome1);

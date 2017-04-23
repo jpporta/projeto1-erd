@@ -48,23 +48,6 @@ float **mult(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
         matR[i][j] = 0;
       }
     }
-    // printf("entre com a primeira matriz\n");
-    // for (i = 0; i < 3; i++)
-    //{
-    //	for (j = 0; j < 4; j++)
-    //	{
-    //		scanf("%i", &m1[i][j]);
-    //	}
-    //}
-    // printf("entre com a segunda matriz\n");
-    // for (i = 0; i < 4; i++)
-    //{
-    //	for (j = 0; j < 4; j++)
-    //	{
-    //		scanf("%i", &m2[i][j]);
-    //	}
-    //}
-    // i = 0; j = 0;
     while (i < x1 && k < x2 && j < y2) {
       matR[i][j] = matR[i][j] + (mat1[i][k] * mat2[k][j]);
       aux++;
@@ -89,15 +72,42 @@ float **mult(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
         j = 0;
       }
     }
-    // printf("resultado\n");
-    // for (i = 0; i < x1; i++)
-    //{
-    //	for (j = 0; j < y2; j++)
-    //	{
-    //		printf("%i ", matR[i][j]);
-    //	}
-    //	printf("\n");
-    //}
+    return matR;
+  } else {
+    return NULL;
+  }
+}
+//***************************************************************************************************
+// MULT
+// UTILIZADO PARA DIVIDIR MATRIZ ELEMENTO A ELEMENTO
+float **div(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
+  float matR;
+  int i, j;
+  if (x1 == x2 && y1 == y2) {
+
+    for (i = 0; i < x1; i++) {
+      for (j = 0; j < y2; j++) {
+        matR[i][j] = mat1[i][j] / mat2[i][j];
+      }
+    }
+    return matR;
+  } else {
+    return NULL;
+  }
+}
+//***************************************************************************************************
+// MULT
+// UTILIZADO PARA MULTIPLICAR MATRIZ ELEMENTO  A ELEMENTO
+float **mult_elemento(float **mat1, float **mat2, int x1, int y1, int x2,
+                      int y2) {
+  float **matR;
+  int i, j;
+  if (x1 == x2 && y1 == y2) {
+    for (i = 0; i < x1; i++) {
+      for (j = 0; j < y2; j++) {
+        matR[i][j] = mat1[i][j] * mat2[i][j];
+      }
+    }
     return matR;
   } else {
     return NULL;

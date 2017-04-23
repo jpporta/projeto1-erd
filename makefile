@@ -3,7 +3,7 @@
 all: prog run clean rmpoper
 
 prog: main.o lista.o matriz.o
-	gcc -o prog main.o lista.o matriz.o -lm
+	gcc -Wall -o prog main.o lista.o matriz.o -lm
 
 matriz.o: matriz.c
 	gcc -c matriz.c
