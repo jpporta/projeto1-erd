@@ -3,22 +3,22 @@
 all: prog run clean rmpoper
 
 prog: main.o lista.o matriz.o
-	gcc -Wall -o prog main.o lista.o matriz.o -lm
+	gcc -Wall -o prog main.o lista.o matriz.o -lm -v
 
 matriz.o: matriz.c
 	gcc -c matriz.c
 
-lista.o: lista.c 
+lista.o: lista.c
 	gcc -c lista.c
 
 main.o: main.c
 	gcc -c main.c
 
-clean: 
+clean:
 	rm -rf  *.o
 
 rmpoper: clean
 	rm -rf prog
 
-run: prog
-	./prog < in.txt >out.txt
+run: prog clean
+	./prog #<in.txt >out.txt

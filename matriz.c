@@ -40,8 +40,12 @@ void imprime(float **M, int x, int y) {
 // MULT
 // UTILIZADO PARA MULTIPLICAR MATRIZ
 float **mult(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
-  float matR;
+  float **matR = NULL;
   int aux = 0, aux1 = 0, aux2 = 0, i = 0, j = 0, k = 0;
+  *matR = malloc (x1 * sizeof (float *));
+  for (i = 0; i < x1; ++i)
+  	matR[i] = malloc (y2 * sizeof (float));	
+
   if (y1 == x2) {
     for (i = 0; i < x1; i++) {
       for (j = 0; j < y2; j++) {
@@ -81,8 +85,11 @@ float **mult(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
 // DIV
 // UTILIZADO PARA DIVIDIR MATRIZ ELEMENTO A ELEMENTO
 float **divi(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
-  float matR;
+  float **matR = NULL;
   int i, j;
+  *matR = malloc (x1 * sizeof (float *));
+  for (i = 0; i < x1; ++i)
+  matR[i] = malloc (y2 * sizeof (float));	
   if (x1 == x2 && y1 == y2) {
 
     for (i = 0; i < x1; i++) {
@@ -105,12 +112,16 @@ float **divi(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
 //***************************************************************************************************
 // TRANS
 // UTILIZADO PARA TRANSPOR UMA MATRIZ
-float **trans		(float **mat1, int x1, int y1) {
-  float matR;
+  float **trans		(float **mat1, int x1, int y1) {
+  float **matR = NULL;
   int i, j;
+  *matR = malloc (y1 * sizeof (float *));
+  for (i = 0; i < x1; ++i)
+  matR[i] = malloc (x1 * sizeof (float));	
+
     for (i = 0; i < x1; i++) {
       for (j = 0; j < y1; j++) {
-	matR[j][i] = mat1[i][j]
+			matR[j][i] = mat1[i][j];
       }
     }
     return matR;
@@ -118,9 +129,13 @@ float **trans		(float **mat1, int x1, int y1) {
 //***************************************************************************************************
 // SOMA
 // UTILIZADO PARA SOMAR MATRIZ ELEMENTO  A ELEMENTO
-float **soma(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
-  float matR;
+float **soma(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
+  float **matR = NULL;
   int i, j;
+  *matR = malloc (x1 * sizeof (float *));
+  for (i = 0; i < x1; ++i)
+  matR[i] = malloc (y1 * sizeof (float));	
+
   if (x1 == x2 && y1 == y2) {
 
     for (i = 0; i < x1; i++) {
@@ -138,8 +153,12 @@ float **soma(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
 // UTILIZADO PARA MULTIPLICAR MATRIZ ELEMENTO  A ELEMENTO
 float **mult_elemento(float **mat1, float **mat2, int x1, int y1, int x2,
                       int y2) {
-  float **matR;
+  float **matR = NULL;
   int i, j;
+  *matR = malloc (x1 * sizeof (float *));
+  for (i = 0; i < x1; ++i)
+  matR[i] = malloc (y1 * sizeof (float));	
+
   if (x1 == x2 && y1 == y2) {
     for (i = 0; i < x1; i++) {
       for (j = 0; j < y2; j++) {
