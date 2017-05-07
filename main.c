@@ -27,10 +27,10 @@ int main() {
     if (!(strcmp(cmd, "CM"))) {
       scanf("%s", nome1);
       scanf("%i %i", &y, &x);
-      if (1 > y || 50 < y || 1 > x || 50 < x)
+      if (1 >= y || 50 <= y || 1 >= x || 50 <= x)
         puts("ERRO");
       else
-        y = criarMatriz(&pLista, nome1, y, x);
+        criarMatriz(&pLista, nome1, y, x);
     }
     if (!(strcmp(cmd, "DM"))) {
       scanf("%s", nome1);
@@ -38,13 +38,13 @@ int main() {
     }
     if (!(strcmp(cmd, "IM"))) {
       scanf("%s", nome1);
-      imprimirMatriz(&plista, nome1);
+      imprimirMatriz(pLista, nome1);
     }
     if (!(strcmp(cmd, "AE"))) {
       scanf("%s", nome1);
       scanf("%i %i", &y, &x);
       scanf("%f", &num);
-      atribuirElemento(&plista, nome1, y, x, num);
+      atribuirElemento(pLista, nome1, y, x, num);
     }
     if (!(strcmp(cmd, "AL"))) {
       scanf("%s", nome1);
@@ -59,19 +59,19 @@ int main() {
     if (!(strcmp(cmd, "TM"))) {
       scanf("%s", nome1);
       scanf("%s", nomeR);
-      // transporMatriz(&pLista, nome1, nomeR);
+      transporMatriz(pLista, nome1, nomeR);
     }
     if (!(strcmp(cmd, "SM"))) {
       scanf("%s", nome1);
       scanf("%s", nome2);
       scanf("%s", nomeR);
-      // somarMatriz(&pLista, nome1, nome2, nomeR);
+      somarMatriz(pLista, nome1, nome2, nomeR);
     }
     if (!(strcmp(cmd, "DV"))) {
       scanf("%s", nome1);
       scanf("%s", nome2);
       scanf("%s", nomeR);
-      dividirMatriz(&pLista, nome1, nome2, nomeR);
+      dividirMatriz(pLista, nome1, nome2, nomeR);
     }
     if (!(strcmp(cmd, "MM"))) {
       scanf("%s", nome1);

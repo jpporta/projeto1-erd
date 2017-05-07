@@ -126,15 +126,48 @@ void atribuirColuna(struct tLista **pLista, char *nome, int x) {
 }
 //***************************************************************************************************
 // TRANSPOR MATRIZ
-void transporMatriz(struct tLista **pLista, char *nome, char *nomeR) {}
+void transporMatriz(struct tLista **pLista, char *nome, char *nomeR) {
+  struct tLista *aux1, *aux2;  
+  float **matR;  
+  if (pLista == NULL) {
+    return 0;
+  } else
+    aux1 = busca(*pLista, nome1);
+    aux2 = busca(*pLista, nomeR);
+    if (aux2 != NULL)
+    {
+      puts("ERRO");
+      return;
+    }
+    if (aux1 != NULL) {
+      aux2 = criarMatriz(pLista, nomeR, aux1->sizex, aux1->sizey);
+      (aux2->mat) = trans(aux1->mat, aux1->x, aux1->y);
+      puts(*nomeR);
+  } else
+      puts("ERRO");
+} 
 //***************************************************************************************************
 // SOMAR MATRIZ
-void somarMatriz(struct tLista **pLista, char *nome1, char *nome2,
-                 char *nomeR) {}
+void somarMatriz(struct tLista **pLista, char *nome1, char *nome2, char *nomeR) {
+  struct tLista *aux1, *aux2, *aux3;
+  float **matR;
+  if (pLista == NULL) {
+    return 0;
+  } else
+    aux1 = busca(*pLista, nome1);
+    aux2 = busca(*pLista, nome2);
+    if (aux1 != NULL && aux2 != NULL) {
+      aux3 = criarMatriz(pLista, nomeR, aux1->sizex, aux1->sizey);
+      (aux3->mat) = soma(aux1->mat, aux2->mat, aux1->x, aux1->y, aux2->x, aux2->y);
+      puts(*nomeR);
+  } else
+      puts("ERRO");
+}
+
+}
 //***************************************************************************************************
 // DIVIDIR MATRIZ
-void dividirMatriz(struct tLista **pLista, char *nome1, char *nome2,
-                   char *nomeR) {
+void dividirMatriz(struct tLista **pLista, char *nome1, char *nome2, char *nomeR) {
   struct tLista *aux1, *aux2;
   float **matR;
   if (pLista == NULL) {
@@ -142,11 +175,12 @@ void dividirMatriz(struct tLista **pLista, char *nome1, char *nome2,
   } else
     aux1 = busca(*pLista, nome1);
   aux2 = busca(*pLista, nome2);
-  if (aux1 != NULL || aux2 != NULL) {
+  if (aux1 != NULL && aux2 != NULL) {
     strcat(nome1, "X");
     strcat(nome1, nome2);
     aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);
-    (aux1->mat) = div(aux1->mat, aux2->mat, aux1->x, aux1->y, aux2->x, aux2->y);
+    (aux1->mat) = divi(aux1->mat, aux2->mat, aux1->x, aux1->y, aux2->x, aux2->y);
+    if (aux1->mat == NULL) puts("ERRO");
   } else
     puts("ERRO");
 }
@@ -161,20 +195,18 @@ void multiplicarMatriz(struct tLista **pLista, char *nome1, char *nome2,
   } else {
     aux1 = busca(*pLista, nome1);
     aux2 = busca(*pLista, nome2);
-    if (aux1 != NULL || aux2 != NULL) {
+    if (aux1 != NULL && aux2 != NULL) {
       strcat(nome1, "X");
       strcat(nome1, nome2);
       aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);
-      (aux1->mat) =
-          mult(aux1->mat, aux2->mat, aux1->x, aux1->y, aux2->x, aux2->y);
+      (aux1->mat) = mult(aux1->mat, aux2->mat, aux1->x, aux1->y, aux2->x, aux2->y);
     } else
       puts("ERRO");
   }
 }
 //***************************************************************************************************
 // MULTIPLICAR ELEMENTOS
-void multiplicarElem(struct tLista **pLista, char *nome1, char *nome2,
-                     char *nomeR) {
+void multiplicarElem(struct tLista **pLista, char *nome1, char *nome2, char *nomeR) {
   struct tLista *aux1, *aux2;
   float **matR;
   if (pLista == NULL) {
@@ -182,7 +214,7 @@ void multiplicarElem(struct tLista **pLista, char *nome1, char *nome2,
   } else
     aux1 = busca(*pLista, nome1);
   aux2 = busca(*pLista, nome2);
-  if (aux1 != NULL || aux2 != NULL) {
+  if (aux1 != NULL && aux2 != NULL) {
     strcat(nome1, "X");
     strcat(nome1, nome2);
     aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);

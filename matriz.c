@@ -39,7 +39,7 @@ void imprime(float **M, int x, int y) {
 //***************************************************************************************************
 // MULT
 // UTILIZADO PARA MULTIPLICAR MATRIZ
-float **mult(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
+float **mult(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
   float matR;
   int aux = 0, aux1 = 0, aux2 = 0, i = 0, j = 0, k = 0;
   if (y1 == x2) {
@@ -78,16 +78,54 @@ float **mult(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
   }
 }
 //***************************************************************************************************
-// MULT
+// DIV
 // UTILIZADO PARA DIVIDIR MATRIZ ELEMENTO A ELEMENTO
-float **div(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
+float **divi(float **mat1, float **mat2, int x1, int y1, int x2, int y2) {
   float matR;
   int i, j;
   if (x1 == x2 && y1 == y2) {
 
     for (i = 0; i < x1; i++) {
       for (j = 0; j < y2; j++) {
-        matR[i][j] = mat1[i][j] / mat2[i][j];
+	if (mat2[i][j] == 0)
+	{ 
+		return NULL;
+	}
+	else
+	{
+        	matR[i][j] = mat1[i][j] / mat2[i][j];
+	}
+      }
+    }
+    return matR;
+  } else {
+    return NULL;
+  }
+}
+//***************************************************************************************************
+// TRANS
+// UTILIZADO PARA TRANSPOR UMA MATRIZ
+float **trans		(float **mat1, int x1, int y1) {
+  float matR;
+  int i, j;
+    for (i = 0; i < x1; i++) {
+      for (j = 0; j < y1; j++) {
+	matR[j][i] = mat1[i][j]
+      }
+    }
+    return matR;
+}
+//***************************************************************************************************
+// SOMA
+// UTILIZADO PARA SOMAR MATRIZ ELEMENTO  A ELEMENTO
+float **soma(float *mat1, float *mat2, int x1, int y1, int x2, int y2) {
+  float matR;
+  int i, j;
+  if (x1 == x2 && y1 == y2) {
+
+    for (i = 0; i < x1; i++) {
+      for (j = 0; j < y2; j++) {
+        matR[i][j] = mat1[i][j] + mat2[i][j];
       }
     }
     return matR;
