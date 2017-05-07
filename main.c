@@ -21,14 +21,15 @@ int main() {
 
   pLista = NULL;
   do {
-    system("clear");
+    //    system("clear");
     scanf("%s", cmd);
 
     if (!(strcmp(cmd, "CM"))) {
       scanf("%s", nome1);
-      scanf("%i %i", &y, &x);
-      if (1 > y || 50 < y || 1 > x || 50 < x)
-        puts("ERRO");
+      puts(nome1);
+      scanf("%i %i", &x, &y);
+      if (1 >= y || 51 <= y || 1 >= x || 51 <= x)
+        puts("ERROs");
       else
         criarMatriz(&pLista, nome1, y, x);
     }
@@ -38,40 +39,40 @@ int main() {
     }
     if (!(strcmp(cmd, "IM"))) {
       scanf("%s", nome1);
-      // imprimirMatriz(&plista, nome1);
+      imprimirMatriz(pLista, nome1);
     }
     if (!(strcmp(cmd, "AE"))) {
       scanf("%s", nome1);
       scanf("%i %i", &y, &x);
       scanf("%f", &num);
-      //  atribuirElemento(&plista, nome1, y, x, num);
+      atribuirElemento(&pLista, nome1, y, x, num);
     }
     if (!(strcmp(cmd, "AL"))) {
       scanf("%s", nome1);
       scanf("%i", &y);
-      // atribuirLinha(&pLista, nome1, y);
+      atribuirLinha(&pLista, nome1, y);
     }
     if (!(strcmp(cmd, "AC"))) {
       scanf("%s", nome1);
       scanf("%i", &x);
-      // atribuirColuna(&pLista, nome1, x);
+      atribuirColuna(&pLista, nome1, x);
     }
     if (!(strcmp(cmd, "TM"))) {
       scanf("%s", nome1);
       scanf("%s", nomeR);
-      // transporMatriz(&pLista, nome1, nomeR);
+      transporMatriz(&pLista, nome1, nomeR);
     }
     if (!(strcmp(cmd, "SM"))) {
       scanf("%s", nome1);
       scanf("%s", nome2);
       scanf("%s", nomeR);
-      // somarMatriz(&pLista, nome1, nome2, nomeR);
+      somarMatriz(&pLista, nome1, nome2, nomeR);
     }
     if (!(strcmp(cmd, "DV"))) {
       scanf("%s", nome1);
       scanf("%s", nome2);
       scanf("%s", nomeR);
-      // dividirMatriz(&pLista, nome1, nome2, nomeR);
+      dividirMatriz(&pLista, nome1, nome2, nomeR);
     }
     if (!(strcmp(cmd, "MM"))) {
       scanf("%s", nome1);
