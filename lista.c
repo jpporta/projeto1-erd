@@ -123,7 +123,7 @@ void atribuirLinha(struct tLista **pLista, char *nome, int y) {
       aux[i] = strtof(num, NULL);
       i++;
     }
-    if (erro == 0) {
+    if (erro == 0 || i == 51) {
       for (i = 0; i < au->sizex; i++) {
         atribuirElemento(pLista, nome, y, i, aux[i], 0);
       }
@@ -155,7 +155,7 @@ void atribuirColuna(struct tLista **pLista, char *nome, int x) {
       aux[i] = strtof(num, NULL);
       i++;
     }
-    if (erro == 0) {
+    if (erro == 0 || i == 51) {
       for (i = 0; i < au->sizey; i++) {
         atribuirElemento(pLista, nome, i, x, aux[i], 0);
       }
