@@ -53,6 +53,7 @@ void destruirMatriz(struct tLista **pLista, char *nome) {
         *pLista = (*pLista)->prox;
         eliminaMatriz((dobby->mat), dobby->sizex);
         free(dobby);
+        puts("OK");
       } else {
         if ((*pLista)->prox == NULL)
           puts("ERRO");
@@ -62,6 +63,7 @@ void destruirMatriz(struct tLista **pLista, char *nome) {
             (*pLista)->prox = (*pLista)->prox->prox;
             eliminaMatriz((dobby->mat), dobby->sizex);
             free(dobby);
+            puts("OK");
           } else
             destruirMatriz(&(*pLista)->prox, nome);
         }
@@ -89,8 +91,12 @@ void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,
   float **M;
   struct tLista *aux;
   aux = busca(*pLista, nome);
-  M = aux->mat;
-  M[x][y] = num;
+  if (aux == NULL || x < 1 || y < 1 || x > aux->sizex || y > aux->sizey)
+    puts("ERRO");
+  else {
+    M = aux->mat;
+    M[x][y] = num;
+  }
 }
 //***************************************************************************************************
 // ATRIBUIR LINHA
