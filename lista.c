@@ -91,7 +91,7 @@ void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,
   float **M;
   struct tLista *aux;
   aux = busca(*pLista, nome);
-  if (aux == NULL || x < 1 || y < 1 || x > aux->sizex || y > aux->sizey)
+  if (aux == NULL || x < 1 || y < 1 || x > aux->sizex - 1 || y > aux->sizey - 1)
     puts("ERRO");
   else {
     M = aux->mat;

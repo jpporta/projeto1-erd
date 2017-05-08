@@ -23,7 +23,6 @@ int main() {
   do {
     //    system("clear");
     scanf("%s", cmd);
-    strupr(cmd);
     if (!(strcmp(cmd, "CM"))) {
       scanf("%s", nome1);
       scanf("%i %i", &x, &y);
