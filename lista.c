@@ -27,6 +27,7 @@ struct tLista *criarMatriz(struct tLista **pLista, char *nome, int y, int x) {
       (*pLista)->sizey = y;
       (*pLista)->prox = NULL;
       (*pLista)->mat = initMatriz(x, y);
+      puts("OK");
       return *pLista;
     } else {
       if (strcmp((*pLista)->nome, nome) == 0) {
@@ -51,7 +52,6 @@ void destruirMatriz(struct tLista **pLista, char *nome) {
         dobby = *pLista;
         *pLista = (*pLista)->prox;
         eliminaMatriz((dobby->mat), dobby->sizex);
-        printf("destrido %s\n", nome); //<--------------------------Excluir
         free(dobby);
       } else {
         if ((*pLista)->prox == NULL)
@@ -61,7 +61,6 @@ void destruirMatriz(struct tLista **pLista, char *nome) {
             dobby = (*pLista)->prox;
             (*pLista)->prox = (*pLista)->prox->prox;
             eliminaMatriz((dobby->mat), dobby->sizex);
-            printf("destrido %s\n", nome); //<--------------------------Excluir
             free(dobby);
           } else
             destruirMatriz(&(*pLista)->prox, nome);

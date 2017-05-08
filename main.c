@@ -27,7 +27,7 @@ int main() {
     if (!(strcmp(cmd, "CM"))) {
       scanf("%s", nome1);
       scanf("%i %i", &x, &y);
-      if (1 >= y || 51 <= y || 1 >= x || 51 <= x)
+      if (0 >= y || 51 <= y || 0 >= x || 51 <= x)
         puts("ERROs");
       else
         criarMatriz(&pLista, nome1, y, x);

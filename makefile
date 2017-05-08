@@ -21,4 +21,4 @@ rmpoper: clean
 	rm -rf prog
 
 run: prog clean
-	./prog #<in.txt #>out.txt
+	./prog <in.txt #>out.txt
