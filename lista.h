@@ -11,7 +11,7 @@ struct tLista *busca        (struct tLista *pLista, char *nome);
 struct tLista *criarMatriz  (struct tLista **pLista, char *nome, int y, int x);
 void destruirMatriz         (struct tLista **pLista, char *nome);
 void imprimirMatriz         (struct tLista *pLista, char *nome);
-void atribuirElemento       (struct tLista **pLista, char *nome, int y, int x, float num);
+void atribuirElemento       (struct tLista **pLista, char *nome, int y, int x, float num, int t);
 void atribuirLinha          (struct tLista **pLista, char *nome, int y);
 void atribuirColuna         (struct tLista **pLista, char *nome, int x);
 void transporMatriz         (struct tLista **pLista, char *nome, char *nomeR);

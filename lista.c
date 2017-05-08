@@ -87,14 +87,15 @@ void imprimirMatriz(struct tLista *pLista, char *nome) {
 //***************************************************************************************************
 // ATRIBUIR ELEMENTO
 void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,
-                      float num) {
+                      float num, int t) {
   float **M;
   struct tLista *aux;
   aux = busca(*pLista, nome);
   if (aux == NULL || x < 0 || y < 0 || x > aux->sizex - 1 || y > aux->sizey - 1)
     puts("ERRO");
   else {
-    puts("OK");
+    if (t)
+      puts("OK");
     M = aux->mat;
     M[x][y] = num;
   }
@@ -105,28 +106,30 @@ void atribuirLinha(struct tLista **pLista, char *nome, int y) {
   int erro = 0;
   char num[20];
   float **M, aux[50];
-  int i;
+  int i = 0;
   struct tLista *au;
   au = busca(*pLista, nome);
   if (au == NULL)
     puts("ERRO");
   else {
-    M = au->mat;
-    for (i = 0; i <= au->sizex; i++) {
+    while (i <= 50) {
       scanf("%s", num);
-      if (num[0] == '#' || (i == au->sizex && num[0] != '#')) {
-        erro = 1;
-        puts("ERRO");
+      if (strcmp(num, "#") == 0 && i == au->sizex)
         break;
-      } else {
-        aux[i] = strtof(num, NULL);
+      if (strcmp(num, "#") == 0) {
+        erro = 1;
+        break;
       }
+      aux[i] = strtof(num, NULL);
+      i++;
     }
     if (erro == 0) {
       for (i = 0; i < au->sizex; i++) {
-        atribuirElemento(pLista, nome, y, i, aux[i]);
+        atribuirElemento(pLista, nome, y, i, aux[i], 0);
       }
-    }
+      puts("OK");
+    } else
+      puts("ERRO");
   }
 }
 //***************************************************************************************************
@@ -135,28 +138,30 @@ void atribuirColuna(struct tLista **pLista, char *nome, int x) {
   int erro = 0;
   char num[20];
   float **M, aux[50];
-  int i;
+  int i = 0;
   struct tLista *au;
   au = busca(*pLista, nome);
   if (au == NULL)
     puts("ERRO");
   else {
-    M = au->mat;
-    for (i = 0; i <= au->sizey; i++) {
+    while (i <= 50) {
       scanf("%s", num);
-      if (num[0] == '#' || (i == au->sizey && num[0] != '#')) {
-        erro = 1;
-        puts("ERRO");
+      if (strcmp(num, "#") == 0 && i == au->sizey)
         break;
-      } else {
-        aux[i] = strtof(num, NULL);
+      if (strcmp(num, "#") == 0) {
+        erro = 1;
+        break;
       }
+      aux[i] = strtof(num, NULL);
+      i++;
     }
     if (erro == 0) {
       for (i = 0; i < au->sizey; i++) {
-        atribuirElemento(pLista, nome, x, i, aux[i]);
+        atribuirElemento(pLista, nome, i, x, aux[i], 0);
       }
-    }
+      puts("OK");
+    } else
+      puts("ERRO");
   }
 }
 

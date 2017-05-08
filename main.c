@@ -43,7 +43,7 @@ int main() {
       scanf("%s", nome1);
       scanf("%i %i", &y, &x);
       scanf("%f", &num);
-      atribuirElemento(&pLista, nome1, y, x, num);
+      atribuirElemento(&pLista, nome1, y, x, num, 1);
     }
     if (!(strcmp(cmd, "AL"))) {
       scanf("%s", nome1);
