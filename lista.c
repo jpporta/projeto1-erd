@@ -16,47 +16,56 @@ struct tLista *busca(struct tLista *pLista, char *nome) {
 //***************************************************************************************************
 // CRIAR MATRIZ
 struct tLista *criarMatriz(struct tLista **pLista, char *nome, int y, int x) {
-  if (*pLista == NULL) {
-    *pLista = (struct tLista *)malloc(sizeof(struct tLista));
-    strcpy((*pLista)->nome, nome);
-    (*pLista)->sizex = x;
-    (*pLista)->sizey = y;
-    (*pLista)->prox = NULL;
-    (*pLista)->mat = initMatriz(x, y);
-    return *pLista;
+  if (busca((*pLista), nome) != NULL) {
+    puts("ERRO");
+    return NULL;
   } else {
-    if (strcmp((*pLista)->nome, nome) == 0) {
-      printf("ERRO\n");
-      return NULL;
-    } else
-      return criarMatriz(&(*pLista)->prox, nome, y, x);
+    if (*pLista == NULL) {
+      *pLista = (struct tLista *)malloc(sizeof(struct tLista));
+      strcpy((*pLista)->nome, nome);
+      (*pLista)->sizex = x;
+      (*pLista)->sizey = y;
+      (*pLista)->prox = NULL;
+      (*pLista)->mat = initMatriz(x, y);
+      return *pLista;
+    } else {
+      if (strcmp((*pLista)->nome, nome) == 0) {
+        printf("ERRO\n");
+        return NULL;
+      } else
+        return criarMatriz(&(*pLista)->prox, nome, y, x);
+    }
   }
 }
 //***************************************************************************************************
 // DESTRUIR MATRIZ
 void destruirMatriz(struct tLista **pLista, char *nome) {
   struct tLista *dobby;
-  if (*pLista == NULL)
+  if (busca((*pLista), nome) == NULL)
     puts("ERRO");
   else {
-    if (strcmp((*pLista)->nome, nome) == 0) {
-      dobby = *pLista;
-      *pLista = (*pLista)->prox;
-      eliminaMatriz((dobby->mat), dobby->sizex);
-      printf("destrido %s\n", nome); //<--------------------------Excluir
-      free(dobby);
-    } else {
-      if ((*pLista)->prox == NULL)
-        puts("ERRO");
-      else {
-        if (strcmp((*pLista)->prox->nome, nome) == 0) {
-          dobby = (*pLista)->prox;
-          (*pLista)->prox = (*pLista)->prox->prox;
-          eliminaMatriz((dobby->mat), dobby->sizex);
-          printf("destrido %s\n", nome); //<--------------------------Excluir
-          free(dobby);
-        } else
-          destruirMatriz(&(*pLista)->prox, nome);
+    if (*pLista == NULL)
+      puts("ERRO");
+    else {
+      if (strcmp((*pLista)->nome, nome) == 0) {
+        dobby = *pLista;
+        *pLista = (*pLista)->prox;
+        eliminaMatriz((dobby->mat), dobby->sizex);
+        printf("destrido %s\n", nome); //<--------------------------Excluir
+        free(dobby);
+      } else {
+        if ((*pLista)->prox == NULL)
+          puts("ERRO");
+        else {
+          if (strcmp((*pLista)->prox->nome, nome) == 0) {
+            dobby = (*pLista)->prox;
+            (*pLista)->prox = (*pLista)->prox->prox;
+            eliminaMatriz((dobby->mat), dobby->sizex);
+            printf("destrido %s\n", nome); //<--------------------------Excluir
+            free(dobby);
+          } else
+            destruirMatriz(&(*pLista)->prox, nome);
+        }
       }
     }
   }

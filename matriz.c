@@ -33,7 +33,7 @@ void imprime(float **M, int x, int y) {
     for (int i = 0; i < x; i++) {
       if (i != 0)
         printf(" ");
-      printf("%4.2f", M[j][i]);
+      printf("%4.2f", M[i][j]);
     }
     printf("\n");
   }
