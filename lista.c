@@ -91,7 +91,7 @@ void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,
   float **M;
   struct tLista *aux;
   aux = busca(*pLista, nome);
-  if (aux == NULL || x < 1 || y < 1 || x > aux->sizex - 1 || y > aux->sizey - 1)
+  if (aux == NULL || x < 0 || y < 0 || x > aux->sizex - 1 || y > aux->sizey - 1)
     puts("ERRO");
   else {
     puts("OK");
@@ -102,35 +102,64 @@ void atribuirElemento(struct tLista **pLista, char *nome, int y, int x,
 //***************************************************************************************************
 // ATRIBUIR LINHA
 void atribuirLinha(struct tLista **pLista, char *nome, int y) {
-  int count = 0;
+  int erro = 0;
   char num[20];
-  float **M;
-  struct tLista *aux;
-  aux = busca(*pLista, nome);
-  M = aux->mat;
-  scanf("%s", num);
-  while (strcmp(num, "#") != 0) {
-    M[count][y] = strtof(num, NULL);
-    count++;
-    scanf("%s", num);
+  float **M, aux[50];
+  int i;
+  struct tLista *au;
+  au = busca(*pLista, nome);
+  if (au == NULL)
+    puts("ERRO");
+  else {
+    M = au->mat;
+    for (i = 0; i <= au->sizex; i++) {
+      scanf("%s", num);
+      if (num[0] == '#' || (i == au->sizex && num[0] != '#')) {
+        erro = 1;
+        puts("ERRO");
+        break;
+      } else {
+        aux[i] = strtof(num, NULL);
+      }
+    }
+    if (erro == 0) {
+      for (i = 0; i < au->sizex; i++) {
+        atribuirElemento(pLista, nome, y, i, aux[i]);
+      }
+    }
   }
 }
 //***************************************************************************************************
 // ATRIBUIR COLUNA
 void atribuirColuna(struct tLista **pLista, char *nome, int x) {
-  int count = 0;
+  int erro = 0;
   char num[20];
-  float **M;
-  struct tLista *aux;
-  aux = busca(*pLista, nome);
-  M = aux->mat;
-  scanf("%s", num);
-  while (strcmp(num, "#") != 0) {
-    M[x][count] = strtof(num, NULL);
-    count++;
-    scanf("%s", num);
+  float **M, aux[50];
+  int i;
+  struct tLista *au;
+  au = busca(*pLista, nome);
+  if (au == NULL)
+    puts("ERRO");
+  else {
+    M = au->mat;
+    for (i = 0; i <= au->sizey; i++) {
+      scanf("%s", num);
+      if (num[0] == '#' || (i == au->sizey && num[0] != '#')) {
+        erro = 1;
+        puts("ERRO");
+        break;
+      } else {
+        aux[i] = strtof(num, NULL);
+      }
+    }
+    if (erro == 0) {
+      for (i = 0; i < au->sizey; i++) {
+        atribuirElemento(pLista, nome, x, i, aux[i]);
+      }
+    }
   }
 }
+
 //***************************************************************************************************
 // TRANSPOR MATRIZ
 void transporMatriz(struct tLista **pLista, char *nome, char *nomeR) {
