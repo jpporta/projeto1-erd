@@ -140,7 +140,7 @@ void transporMatriz(struct tLista **pLista, char *nome, char *nomeR) {
     if (aux1 != NULL) {
       aux2 = criarMatriz(pLista, nomeR, aux1->sizey, aux1->sizex);
       (aux2->mat) = trans(aux1->mat, aux1->sizex, aux1->sizey);
-      //
+      imprime(aux2->mat, aux1->sizey, aux1->sizex);
     } else
       puts("ERRO");
   } else
@@ -161,7 +161,7 @@ void somarMatriz(struct tLista **pLista, char *nome1, char *nome2,
       aux3 = criarMatriz(pLista, nomeR, aux1->sizex, aux1->sizey);
       (aux3->mat) = soma(aux1->mat, aux2->mat, aux1->sizex, aux1->sizey,
                          aux2->sizex, aux2->sizey);
-      //
+      imprime(aux3->mat, aux3->sizex, aux3->sizey);
     } else
       puts("ERRO");
   }
@@ -181,6 +181,7 @@ void dividirMatriz(struct tLista **pLista, char *nome1, char *nome2,
       aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);
       (aux1->mat) = divi(aux1->mat, aux2->mat, aux1->sizex, aux1->sizey,
                          aux2->sizex, aux2->sizey);
+      imprime(aux1->mat, aux1->sizex, aux1->sizey);
       if (aux1->mat == NULL)
         puts("ERRO");
     } else
@@ -203,6 +204,7 @@ void multiplicarMatriz(struct tLista **pLista, char *nome1, char *nome2,
       aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);
       (aux1->mat) = mult(aux1->mat, aux2->mat, aux1->sizex, aux1->sizey,
                          aux2->sizex, aux2->sizey);
+      imprime(aux1->mat, aux1->sizex, aux1->sizey);
     } else
       puts("ERRO");
   } else
@@ -223,6 +225,7 @@ void multiplicarElem(struct tLista **pLista, char *nome1, char *nome2,
       aux1 = criarMatriz(pLista, nome1, aux1->sizex, aux2->sizey);
       (aux1->mat) = mult_elemento(aux1->mat, aux2->mat, aux1->sizex,
                                   aux1->sizey, aux2->sizex, aux2->sizey);
+      imprime(aux1->mat, aux1->sizex, aux1->sizey);
       if ((aux1->mat) == NULL)
         puts("ERRO");
     } else

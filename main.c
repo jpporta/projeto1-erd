@@ -26,7 +26,6 @@ int main() {
 
     if (!(strcmp(cmd, "CM"))) {
       scanf("%s", nome1);
-      puts(nome1);
       scanf("%i %i", &x, &y);
       if (1 >= y || 51 <= y || 1 >= x || 51 <= x)
         puts("ERROs");
